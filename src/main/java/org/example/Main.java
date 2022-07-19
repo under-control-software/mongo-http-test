@@ -3,6 +3,7 @@ package org.example;
 import java.util.List;
 
 import com.mongodb.client.http.MongoClient;
+import com.mongodb.client.http.MongoClients;
 import com.mongodb.client.http.MongoCollection;
 import com.mongodb.client.http.MongoDatabase;
 import org.bson.Document;
@@ -17,7 +18,7 @@ import static com.mongodb.client.model.Filters.*;
 
 public class Main {
     public static void main(String[] args) {
-        MongoClient mongoClient = new MongoClient();
+        MongoClient mongoClient = MongoClients.create("http://localhost:5003/api/mongo");
         MongoDatabase database = mongoClient.getDatabase("starwardb");
         System.out.println("database: " + database);
         MongoCollection<Document> collection = database.getCollection("humans");
